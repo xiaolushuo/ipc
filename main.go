@@ -4,7 +4,7 @@
  * @Author: 1314mylove
  * @Date: 2022-11-10 16:23:17
  * @LastEditors: 1314mylove
- * @LastEditTime: 2022-11-11 17:23:58
+ * @LastEditTime: 2022-11-14 17:12:08
  */
 package main
 
@@ -15,6 +15,7 @@ import (
 	"io"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/thinkeridea/go-extend/exnet"
 )
@@ -60,8 +61,9 @@ func main() {
 				if err == io.EOF {
 					break
 				}
-				// fmt.Println(string(line))
-				n, _ := exnet.IPString2Long(string(line))
+				fmt.Println(string(line))
+				// 删除字符串前后空格
+				n, _ := exnet.IPString2Long(strings.TrimSpace(string(line)))
 				fmt.Println(n)
 			}
 		}
@@ -80,10 +82,12 @@ func main() {
 				if err == io.EOF {
 					break
 				}
-				// fmt.Println(string(line))
-				intNum, _ := strconv.Atoi(string(line))
+				// fmt.Println("原始：", string(line))
+				// 删除字符串前后空格
+				intNum, _ := strconv.Atoi(strings.TrimSpace(string(line)))
 				int64Num := uint(intNum)
 				s, _ := exnet.Long2IPString(int64Num)
+				// fmt.Println("转换后：", s)
 				fmt.Println(s)
 			}
 
